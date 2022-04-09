@@ -15,7 +15,7 @@
 - Implement several algorithms for generating and processing text.
 
 
-### Course 2 Project Overview
+## Course 2 Project Overview
 
 Computers can do amazing things with text these days.  Spelling errors are practically a thing of the past, you barely type three characters and the computer seems to read your mind, knowing just what you are trying to type, and your computer can produce intelligible “speech”.  How do all these technologies work?  You’ll find out in this course, and in this project.
 
