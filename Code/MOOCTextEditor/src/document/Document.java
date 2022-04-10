@@ -153,8 +153,17 @@ public abstract class Document {
 	{
 	    // TODO: You will play with this method in week 1, and 
 		// then implement it in week 2
-		double result = 206.835 - 1.015*(getNumWords() / getNumSentences()) - 84.6 *( getNumSyllables() / getNumWords());
-		return result;
+		double words = (double)getNumWords();
+
+		double sentences = (double)getNumSentences();
+
+		double syllables = (double)getNumSyllables();
+
+		double fleschScore = 206.835 - 1.015*(words/sentences) - 84.6*(syllables/words);
+
+		double finalValue = Math.round(fleschScore*100.0)/100.0;
+
+		return finalValue;
 		// return text.length();
 	    // return 0.0;
 	}
