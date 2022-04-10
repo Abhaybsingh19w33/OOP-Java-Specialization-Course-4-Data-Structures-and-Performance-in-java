@@ -37,3 +37,13 @@ Learning outcomes
 - Write code to implement several core data structures
 
 - Write unit tests using JUnit to ensure the correctness of code
+
+# Error Solutions
+While setting up the project folder
+
+got this error
+```
+Description Resource Path Location Type The project was not built since its build path is incomplete. Cannot find the class file for javafx.beans.property.BooleanProperty. Fix the build path then try building this project MOOCTextEditor Unknown Java Problem
+```
+
+Solved by changing work environments to laptops jre_1.0.8 environment
