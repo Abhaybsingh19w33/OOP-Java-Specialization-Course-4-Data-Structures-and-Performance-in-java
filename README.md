@@ -53,3 +53,5 @@ Solved by changing work environments to laptops jre_1.0.8 environment
 #### References
 
 https://gist.github.com/Luckygirlllll/10d88717d4529be233d9
+
+https://github.com/jamesguoxin/TextEditor/blob/master/src/document/DocumentBenchmarking.java
