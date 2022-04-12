@@ -17,7 +17,7 @@ public class NearbyWords implements SpellingSuggest {
 	// THRESHOLD to determine how many words to look through when looking
 	// for spelling suggestions (stops prohibitively long searching)
 	// For use in the Optional Optimization in Part 2.
-	private static final int THRESHOLD = 1000; 
+	private static final int THRESHOLD = 100000; 
 
 	Dictionary dict;
 
@@ -76,6 +76,18 @@ public class NearbyWords implements SpellingSuggest {
 	 * @return
 	 */
 	public void insertions(String s, List<String> currentList, boolean wordsOnly ) {
+		for (int index = 0; index <= s.length(); index++) {
+			for (int charCode = (int)'a'; charCode <= (int)'z'; charCode++) {
+				StringBuffer sb = new StringBuffer(s);
+				sb.insert(index, (char)charCode);
+				
+				if(!currentList.contains(sb.toString()) && 
+						(!wordsOnly||dict.isWord(sb.toString())) &&
+						!s.equals(sb.toString())) {
+					currentList.add(sb.toString());
+				}
+			}
+		}
 		// TODO: Implement this method  
 	}
 
@@ -88,6 +100,16 @@ public class NearbyWords implements SpellingSuggest {
 	 */
 	public void deletions(String s, List<String> currentList, boolean wordsOnly ) {
 		// TODO: Implement this method
+		for (int index = 0; index < s.length(); index++) {
+			StringBuffer sb = new StringBuffer(s);
+			sb.deleteCharAt(index);
+			
+			if(!currentList.contains(sb.toString()) && 
+					(!wordsOnly||dict.isWord(sb.toString())) &&
+					!s.equals(sb.toString())) {
+				currentList.add(sb.toString());
+			}
+		}
 	}
 
 	/** Add to the currentList Strings that are one character deletion away
@@ -109,7 +131,24 @@ public class NearbyWords implements SpellingSuggest {
 		// insert first node
 		queue.add(word);
 		visited.add(word);
-					
+		int count = 0;
+		int thre = 0;
+		while (!queue.isEmpty() && count < numSuggestions && thre < THRESHOLD) {
+			String curr = queue.remove(0);
+			List<String> disOne = distanceOne(curr, false);
+			//System.out.println(disOne);
+			for (String s : disOne) {
+				if (!visited.contains(s)) {
+					queue.add(s);
+					visited.add(s);
+					if (dict.isWord(s)) {
+						retList.add(s);
+						count++;
+					}
+				}
+				thre++;
+			}
+		}
 		// TODO: Implement the remainder of this method, see assignment for algorithm
 		
 		return retList;
